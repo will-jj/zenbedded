@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package format="3">
+    <name>zenbedded_imu</name>
+    <version>0.1.0</version>
+    <description>launch for the Zenbedded sine-wave demo</description>
+    <maintainer email="enejiohieku@gmail.com">Eneji Ohieku</maintainer>
+    <license>Apache-2.0</license>
+
+    <buildtool_depend>ament_cmake</buildtool_depend>
+
+    <depend>control_msgs</depend>
+    <depend>rclcpp</depend>
+    <depend>rclcpp_lifecycle</depend>
+    <depend>zenbedded_hardware_interface</depend>
+    <depend>robot_state_publisher</depend>
+    <depend>controller_manager</depend>
+    <depend>hardware_interface</depend>
+    <depend>controller_interface</depend>
+    <depend>pluginlib</depend>
+    <depend>xacro</depend>
+    <depend>launch_ros</depend>
+    <exec_depend>rqt_plot</exec_depend>
+
+    <export>
+        <build_type>ament_cmake</build_type>
+    </export>
+</package>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<robot name="imu_demo">
+    <link name="base_link"/>
+    <link name="imu_link"/>
+
+    <joint name="imu_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="imu_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <ros2_control name="ZenbeddedSystem" type="system">
+        <hardware>
+            <plugin>zenbedded_hardware_interface/ZenbeddedHardware</plugin>
+            <param name="schema_path">$(find zenbedded_imu)/config/interface_schema.yaml</param>
+            <param name="zenoh_mode">client</param>
+            <param name="zenoh_endpoint">tcp/127.0.0.1:7447</param>
+            <param name="state_topic">zenbedded/imu/state</param>
+            <param name="command_topic">zenbedded/imu/cmd</param>
+        </hardware>
+        <sensor name="imu">
+            <state_interface name="orientation.x"/>
+            <state_interface name="orientation.y"/>
+            <state_interface name="orientation.z"/>
+            <state_interface name="orientation.w"/>
+            <state_interface name="angular_velocity.x"/>
+            <state_interface name="angular_velocity.y"/>
+            <state_interface name="angular_velocity.z"/>
+            <state_interface name="linear_acceleration.x"/>
+            <state_interface name="linear_acceleration.y"/>
+            <state_interface name="linear_acceleration.z"/>
+        </sensor>
+    </ros2_control>
+</robot>

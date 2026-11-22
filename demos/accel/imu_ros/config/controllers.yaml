@@ -1,0 +1,23 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 50
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    imu_sensor_broadcaster:
+      type: imu_sensor_broadcaster/IMUSensorBroadcaster
+
+imu_sensor_broadcaster:
+  ros__parameters:
+    sensor_name: imu
+    frame_id: imu_link
+    static_covariance_orientation: [-1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    static_covariance_angular_velocity: [
+      3.09e-7, 0.0, 0.0,
+      0.0, 3.09e-7, 0.0,
+      0.0, 0.0, 3.09e-7]
+    static_covariance_linear_acceleration: [
+      3.83e-5, 0.0, 0.0,
+      0.0, 3.83e-5, 0.0,
+      0.0, 0.0, 3.83e-5]
