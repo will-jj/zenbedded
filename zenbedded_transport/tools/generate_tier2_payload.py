@@ -47,7 +47,8 @@ def generate_header(yaml_path, output_path):
                 print(f"Error: Unknown type '{ftype}' in state {comp}.{field}", file=sys.stderr)
                 sys.exit(1)
             ctype, size = TYPE_MAP[ftype]
-            state_fields.append(f"  {ctype} {comp}_{field};")
+            c_name = f"{comp}_{field}".replace(".", "__")
+            state_fields.append(f"  {ctype} {c_name};")
             state_size += size
 
     for comp, fields in data.get("command_interfaces", {}).items():
@@ -56,7 +57,8 @@ def generate_header(yaml_path, output_path):
                 print(f"Error: Unknown type '{ftype}' in command {comp}.{field}", file=sys.stderr)
                 sys.exit(1)
             ctype, size = TYPE_MAP[ftype]
-            command_fields.append(f"  {ctype} {comp}_{field};")
+            c_name = f"{comp}_{field}".replace(".", "__")
+            command_fields.append(f"  {ctype} {c_name};")
             command_size += size
 
     header = f"""#ifndef ZENBEDDED_SCHEMA__GENERATED__INTERFACE_DATA_H_
