@@ -46,7 +46,7 @@ RUN ARCH=$(uname -m) && \
 RUN --mount=type=bind,source=requirements.txt,target=/tmp/requirements.txt \
     PIP_CONSTRAINT=/tmp/requirements.txt \
     west packages pip --install --ignore-venv-check -- --break-system-packages --ignore-installed
-RUN west blobs fetch hal_espressif
+RUN west blobs fetch --auto-accept hal_espressif hal_nxp
 
 # Set environment variables
 ENV ZEPHYR_BASE=/zephyr_ws/zephyr
@@ -62,5 +62,18 @@ RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /root/.bashrc && \
     echo "source /zephyr_ws/zephyr/zephyr-env.sh" >> /root/.bashrc
 
 RUN usermod -a -G dialout root
+
+COPY LinkServer_26.9.130.x86_64.deb.bin /tmp/linkserver.deb.bin
+
+
+RUN chmod +x /tmp/linkserver.deb.bin \
+    && apt-get update \
+    && apt-get install -y libncurses6 udev \
+    && (/lib/systemd/systemd-udevd --daemon || true) \
+    && /tmp/linkserver.deb.bin acceptLicense skipIdeSelect \
+    && apt-get install -f -y \
+    && rm -rf /tmp/linkserver.deb.bin /var/lib/apt/lists/*
+
+RUN ln -s /usr/local/LinkServer_*/LinkServer /usr/local/bin/LinkServer
 
 CMD ["/bin/bash", "-c", "source /opt/ros/${ROS_DISTRO}/setup.bash && exec /bin/bash"]
