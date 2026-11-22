@@ -150,12 +150,12 @@ int main(void)
 			sensor_channel_get(dev, SENSOR_CHAN_ACCEL_XYZ, accel);
 			sensor_channel_get(dev, SENSOR_CHAN_GYRO_XYZ, gyro);
 			sensor_channel_get(dev, SENSOR_CHAN_DIE_TEMP, &temperature);
-			state.imu_angular_velocity__x    = sensor_value_to_double(&gyro[0]);
-			state.imu_angular_velocity__y    = sensor_value_to_double(&gyro[1]);
-			state.imu_angular_velocity__z    = sensor_value_to_double(&gyro[2]);
-			state.imu_linear_acceleration__x = sensor_value_to_double(&accel[0]);
-			state.imu_linear_acceleration__y = sensor_value_to_double(&accel[1]);
-			state.imu_linear_acceleration__z = sensor_value_to_double(&accel[2]);
+			state.imu_angular_velocity_x    = sensor_value_to_double(&gyro[0]);
+			state.imu_angular_velocity_y    = sensor_value_to_double(&gyro[1]);
+			state.imu_angular_velocity_z    = sensor_value_to_double(&gyro[2]);
+			state.imu_linear_acceleration_x = sensor_value_to_double(&accel[0]);
+			state.imu_linear_acceleration_y = sensor_value_to_double(&accel[1]);
+			state.imu_linear_acceleration_z = sensor_value_to_double(&accel[2]);
 			//k_sleep(K_MSEC(1000 / loop_freq));
 			// printf("hello %.4f", state.imu_angular_velocity_x);
 			client.write_state(state);

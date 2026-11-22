@@ -1,15 +1,15 @@
 state_interfaces:
   imu:
-    orientation.x: float64
-    orientation.y: float64
-    orientation.z: float64
-    orientation.w: float64
-    angular_velocity.x: float64
-    angular_velocity.y: float64
-    angular_velocity.z: float64
-    linear_acceleration.x: float64
-    linear_acceleration.y: float64
-    linear_acceleration.z: float64
+    orientation_x: float64
+    orientation_y: float64
+    orientation_z: float64
+    orientation_w: float64
+    angular_velocity_x: float64
+    angular_velocity_y: float64
+    angular_velocity_z: float64
+    linear_acceleration_x: float64
+    linear_acceleration_y: float64
+    linear_acceleration_z: float64
 command_interfaces:
   commands:
     do_something: uint8
